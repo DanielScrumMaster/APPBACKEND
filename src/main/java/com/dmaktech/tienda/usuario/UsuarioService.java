@@ -9,7 +9,7 @@ import java.util.List;
 public class UsuarioService {
     private static final List<Usuario> defaultUsers = List.of(
             new Usuario(123L, "Daniel", "dan@gmail.com", "123", "dan123"),
-            new Usuario(123L, "Daniel", "dan@gmail.com", "123", "dan123")
+            new Usuario(987654L, "Pedro", "pedro@gmail.com", "456", "pedro456")
             );
 
     public Collection<Usuario> getUsuarios() {

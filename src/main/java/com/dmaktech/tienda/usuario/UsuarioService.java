@@ -1,38 +1,47 @@
 package com.dmaktech.tienda.usuario;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
 
 @Service
 public class UsuarioService {
-    private static final List<Usuario> defaultUsers = List.of(
-            new Usuario(123L, "Daniel", "dan@gmail.com", "123", "dan123"),
-            new Usuario(987654L, "Pedro", "pedro@gmail.com", "456", "pedro456")
-            );
+    
+    private final UsuarioRepository repository;
+
+    @Autowired
+    public UsuarioService(UsuarioRepository repository) {
+        this.repository = repository;
+    }
 
     public Collection<Usuario> getUsuarios() {
-        return defaultUsers;
+        return repository.findAll();
     }
 
     public Usuario getUsuario(Long cedula) {
-        return defaultUsers.stream().filter(user -> cedula.equals(user.getCedula())).findFirst().get();
+        return repository.findById(cedula)
+            .orElseThrow(() -> new UsuarioNoEncontradoException(cedula));
     }
 
-    public void agregarUsuario(Usuario nuevoUsuario) {
-        defaultUsers.add(nuevoUsuario);
+    public void agregarUsuario(Usuario nuevoUsuario) {           
+        repository.save(nuevoUsuario);
     }
 
-    public void actualizarUsuario(Usuario nuevosDatosUsuario) {
-        Usuario u = getUsuario(nuevosDatosUsuario.getCedula());
-        u.setEmail(nuevosDatosUsuario.getEmail());
-        u.setNombres(nuevosDatosUsuario.getNombres());
-        u.setUsuario(nuevosDatosUsuario.getUsuario());
-        u.setPassword(nuevosDatosUsuario.getPassword());
+    public void actualizarUsuario(Usuario usuario) {
+        repository.findById(usuario.getCedula())
+            .ifPresent(user -> {
+                user.setEmail(usuario.getEmail());
+                user.setNombres(usuario.getNombres());
+                user.setPassword(usuario.getPassword());
+                user.setUsuario(usuario.getUsuario());            
+            });
+
+        repository.save(usuario);
     }
 
     public void borrarUsuario(Long cedula){
-        defaultUsers.removeIf(user -> cedula.equals(user.getCedula()));
+        Usuario user = getUsuario(cedula);
+        repository.delete(user);
     }
 }

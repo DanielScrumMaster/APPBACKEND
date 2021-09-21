@@ -1,12 +1,27 @@
 package com.dmaktech.tienda.usuario;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
     
+    @Id
+    @Column(name = "ced_usuario")
     private Long cedula;
+    @Column(name = "nom_usuario")
     private String nombres;
+    @Column(name = "email_usuario")
     private String email;
+    @Column(name = "password_usuario")
     private String password;
+    @Column(name = "usuario")
     private String usuario;
+
+    public Usuario() {}
 
     public Usuario(Long cedula, String nombres, String email, String password, String usuario) {
         this.cedula = cedula;

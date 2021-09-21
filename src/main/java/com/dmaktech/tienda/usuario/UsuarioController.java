@@ -1,6 +1,7 @@
 package com.dmaktech.tienda.usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -22,22 +23,23 @@ public class UsuarioController {
     }
 
     @GetMapping("/listar/{id}")
-    Usuario getUsuario(Long cedula) {
+    Usuario getUsuario(@PathVariable(name="id") Long cedula) {
         return usuarioService.getUsuario(cedula);
     }
 
     @PostMapping("/guardar")
-    void agregarUsuario(Usuario nuevoUsuario){
+    @ResponseStatus(HttpStatus.CREATED)
+    void agregarUsuario(@RequestBody Usuario nuevoUsuario){
         usuarioService.agregarUsuario(nuevoUsuario);
     }
 
     @PutMapping("/actualizar")
-    void actualizarUsuario(Usuario datosUsuario) {
+    void actualizarUsuario(@RequestBody Usuario datosUsuario) {
         usuarioService.actualizarUsuario(datosUsuario);
     }
 
     @DeleteMapping("/eliminar/{id}")
-    void borrarUsuario(Long cedula){
+    void borrarUsuario(@PathVariable(name="id") Long cedula){
         usuarioService.borrarUsuario(cedula);
     }
 }

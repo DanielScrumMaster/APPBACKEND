@@ -17,29 +17,29 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/listar")
+    @GetMapping
     Collection<Usuario> getUsuarios() {
         return usuarioService.getUsuarios();
     }
 
-    @GetMapping("/listar/{id}")
-    Usuario getUsuario(@PathVariable(name="id") Long cedula) {
+    @GetMapping("/{cedula}")
+    Usuario getUsuario(@PathVariable Long cedula) {
         return usuarioService.getUsuario(cedula);
     }
 
-    @PostMapping("/guardar")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     void agregarUsuario(@RequestBody Usuario nuevoUsuario){
         usuarioService.agregarUsuario(nuevoUsuario);
     }
 
-    @PutMapping("/actualizar")
+    @PutMapping("/{cedula}")
     void actualizarUsuario(@RequestBody Usuario datosUsuario) {
         usuarioService.actualizarUsuario(datosUsuario);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    void borrarUsuario(@PathVariable(name="id") Long cedula){
+    @DeleteMapping("/{cedula}")
+    void borrarUsuario(@PathVariable Long cedula){
         usuarioService.borrarUsuario(cedula);
     }
 }

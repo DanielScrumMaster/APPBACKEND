@@ -26,29 +26,29 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @GetMapping("/listar")
+    @GetMapping
     Collection<Cliente> getClientes() {
         return clienteService.obtenerClientes();
     }
 
-    @GetMapping("/listar/{id}")
-    Cliente getCliente(@PathVariable(name="id") Long cedula)  {
+    @GetMapping("/{cedula}")
+    Cliente getCliente(@PathVariable Long cedula)  {
         return clienteService.obtenerCliente(cedula);
     }
 
-    @PostMapping("/guardar")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void agregarCliente(@RequestBody Cliente nuevoCliente) {
         clienteService.agregarCliente(nuevoCliente);
     }        
 
-    @PutMapping("/actualizar")
+    @PutMapping("/{cedula}")
     public void actualizarCliente(@RequestBody Cliente cliente) {
         clienteService.actualizarCliente(cliente);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public void borrarCliente(@PathVariable(name="id") Long cedula) {
+    @DeleteMapping("/{cedula}")
+    public void borrarCliente(@PathVariable Long cedula) {
         clienteService.borrarCliente(cedula);
     }
 }

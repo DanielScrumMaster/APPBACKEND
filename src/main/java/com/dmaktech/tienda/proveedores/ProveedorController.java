@@ -25,29 +25,29 @@ public class ProveedorController {
         this.proveedorService = proveedorService;
     }
 
-    @GetMapping(value="/listar")
+    @GetMapping
     public Collection<Proveedor> getProveedores() {
         return proveedorService.obtenerProveedores();
     }
     
-    @GetMapping("/listar/{id}")
-    public Proveedor getProveedor(@PathVariable(name="id") Long nit) {
+    @GetMapping("/{nit}")
+    public Proveedor getProveedor(@PathVariable Long nit) {
         return proveedorService.obtenerProveedor(nit);
     }
 
-    @PostMapping("/guardar")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void agregarProveedor(@RequestBody Proveedor nuevoProveedor) {
         proveedorService.agregarProveedor(nuevoProveedor);
     }
 
-    @PutMapping("/actualizar")
-    public void actualizarProveedor(@RequestBody Proveedor proveedor) {
+    @PutMapping("/{nit}")
+    public void actualizarProveedor(@PathVariable Long nit, @RequestBody Proveedor proveedor) {
         proveedorService.actualizarProveedor(proveedor);
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public void borrarProveedor(@PathVariable(name="id") Long nit){
+    @DeleteMapping("/{nit}")
+    public void borrarProveedor(@PathVariable Long nit){
         proveedorService.borrarProveedor(nit);
     }
 }

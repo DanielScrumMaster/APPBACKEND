@@ -1,12 +1,12 @@
 package com.dmaktech.tienda.productos;
 
-import java.io.InputStream;
 import java.util.Collection;
 
 import com.dmaktech.tienda.exceptions.ProductoNoEncontradoException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProductoService {
@@ -23,7 +23,7 @@ public class ProductoService {
             .orElseThrow(() -> new ProductoNoEncontradoException(codigo));
     }
 
-    public void guardarProducto(InputStream productosCSV) {
+    public void guardarProducto(MultipartFile productosCSV) {
         Collection<Producto> productos = ProductoMapper.csvToProducts(productosCSV);
         repository.deleteAll();
         repository.saveAll(productos);

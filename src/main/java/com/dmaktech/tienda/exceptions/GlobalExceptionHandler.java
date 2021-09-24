@@ -31,8 +31,8 @@ public class GlobalExceptionHandler {
 
     //--------------PRODUCTOS EXCEPTIONS-------------------------
 
-    @ExceptionHandler(CSVFormatException.class)
-    public ResponseEntity<?> handleCSVFormatException(CSVFormatException ex){
+    @ExceptionHandler(CSVFileException.class)
+    public ResponseEntity<?> handleCSVFormatException(CSVFileException ex){
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 

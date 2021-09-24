@@ -1,10 +1,10 @@
 package com.dmaktech.tienda.exceptions;
 
-public class CSVFormatException extends RuntimeException{
+public class CSVFileException extends RuntimeException{
 
     private String errorMessage;
 
-    public CSVFormatException(String errorMessage) {
+    public CSVFileException(String errorMessage) {
         super(errorMessage);
         this.errorMessage = errorMessage;
     }

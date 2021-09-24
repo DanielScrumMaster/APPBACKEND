@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+import com.dmaktech.tienda.exceptions.UsuarioNoEncontradoException;
+
 @Service
 public class UsuarioService {
     

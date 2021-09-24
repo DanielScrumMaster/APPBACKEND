@@ -2,6 +2,8 @@ package com.dmaktech.tienda.clientes;
 
 import java.util.Collection;
 
+import com.dmaktech.tienda.exceptions.ClienteNoEncontradoException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

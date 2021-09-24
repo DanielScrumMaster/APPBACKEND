@@ -1,4 +1,4 @@
-package com.dmaktech.tienda.proveedores;
+package com.dmaktech.tienda.exceptions;
 
 public class ProveedorNoEncontradoException extends RuntimeException{
 

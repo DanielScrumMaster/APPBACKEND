@@ -2,6 +2,8 @@ package com.dmaktech.tienda.proveedores;
 
 import java.util.Collection;
 
+import com.dmaktech.tienda.exceptions.ProveedorNoEncontradoException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

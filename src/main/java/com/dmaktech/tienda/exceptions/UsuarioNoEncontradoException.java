@@ -1,6 +1,7 @@
-package com.dmaktech.tienda.usuario;
+package com.dmaktech.tienda.exceptions;
 
-public class UsuarioNoEncontradoException extends RuntimeException{
+public class UsuarioNoEncontradoException extends RuntimeException {
+
     private Long cedula;
 
     public UsuarioNoEncontradoException(Long cedula) {
@@ -10,5 +11,5 @@ public class UsuarioNoEncontradoException extends RuntimeException{
 
     public Long getCedula() {
         return cedula;
-    }    
+    }
 }

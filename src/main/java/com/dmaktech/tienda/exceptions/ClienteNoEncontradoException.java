@@ -1,4 +1,4 @@
-package com.dmaktech.tienda.clientes;
+package com.dmaktech.tienda.exceptions;
 
 public class ClienteNoEncontradoException extends RuntimeException{
     

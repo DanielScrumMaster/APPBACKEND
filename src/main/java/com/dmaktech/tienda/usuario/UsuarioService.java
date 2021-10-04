@@ -17,8 +17,8 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public Collection<Usuario> getUsuarios() {
-        return repository.findAll();
+    public Collection<Usuario> getUsuarios(String filtroCedula) {        
+        return repository.findByCedulaContaining(filtroCedula);
     }
 
     public Usuario getUsuario(Long cedula) {

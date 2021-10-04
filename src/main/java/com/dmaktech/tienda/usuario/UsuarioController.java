@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path ="/usuarios")
@@ -18,8 +19,8 @@ public class UsuarioController {
     }
 
     @GetMapping
-    Collection<Usuario> getUsuarios() {
-        return usuarioService.getUsuarios();
+    Collection<Usuario> getUsuarios(@RequestParam Optional<String> filtroCedulas) {        
+        return usuarioService.getUsuarios(filtroCedulas.orElse(""));
     }
 
     @GetMapping("/{cedula}")

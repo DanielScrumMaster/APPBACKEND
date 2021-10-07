@@ -37,8 +37,11 @@ public class DetalleVentaController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PutMapping
-    public ResponseEntity<Object> actualizarDetalleVenta() {}
+    @PutMapping("/{codigo}")
+    public ResponseEntity<Object> actualizarDetalleVenta(@PathVariable Long codigo, @RequestBody DetalleVenta detalleVenta) {
+        detalleVentaService.actualizarDetalleVenta(codigo, detalleVenta);
+        return ResponseEntity.ok().build();
+    }
 
     
 

@@ -27,6 +27,13 @@ public class DetalleVentaService {
         detalleVentaRepository.save(detalleVenta);
     }
 
+    public void actualizarDetalleVenta(Long codigo, DetalleVenta actualizado) {
+        DetalleVenta detalleVenta = getDetalleVenta(codigo);
+        actualizado.setCodigoDetalle(detalleVenta.getCodigoDetalle());
+
+        detalleVentaRepository.save(actualizado);
+    }
+
     public void borrarDetalleVenta (Long codigo) {
         DetalleVenta detalle = getDetalleVenta(codigo);
         detalleVentaRepository.delete(detalle);

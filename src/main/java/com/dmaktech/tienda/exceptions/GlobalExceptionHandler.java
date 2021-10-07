@@ -11,8 +11,8 @@ public class GlobalExceptionHandler {
     //--------------USUARIOS EXCEPTIONS-------------------------
 
     @ExceptionHandler(UsuarioNoEncontradoException.class)
-    public ResponseEntity<String> usuarioNoEncontradoHandler(UsuarioNoEncontradoException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> usuarioNoEncontradoHandler(UsuarioNoEncontradoException ex) {
+        return ResponseEntity.notFound().build();        
     }  
 
     //--------------CLIENTES EXCEPTIONS-------------------------
@@ -30,14 +30,27 @@ public class GlobalExceptionHandler {
     }
 
     //--------------PRODUCTOS EXCEPTIONS-------------------------
-
+    
     @ExceptionHandler(CSVFileException.class)
     public ResponseEntity<?> handleCSVFormatException(CSVFileException ex){
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
-
+    
     @ExceptionHandler(ProductoNoEncontradoException.class)       
     public ResponseEntity<String> handleProductoNoEncontrado(ProductoNoEncontradoException ex){
         return new ResponseEntity<String>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    
+    //--------------VENTAS EXCEPTIONS-------------------------
+    
+    @ExceptionHandler(VentaNotFoundException.class)
+    public ResponseEntity<Object> handleVentaNotFound(VentaNotFoundException ex) {
+        return ResponseEntity.notFound().build();
+    }    
+
+    //--------------DETALLES VENTAS EXCEPTIONS-------------------------
+    @ExceptionHandler(DetalleVentaNotFoundException.class)
+    public ResponseEntity<Object> handleDetalleVentaNotFound(DetalleVentaNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 }

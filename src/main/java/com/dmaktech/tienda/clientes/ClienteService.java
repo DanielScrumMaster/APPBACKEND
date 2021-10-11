@@ -17,8 +17,8 @@ public class ClienteService {
         this.repository = repository;
     }
     
-    public Collection<Cliente> obtenerClientes() {
-        return repository.findAll();
+    public Collection<Cliente> obtenerClientes(String cedula) {
+        return repository.findClientesByCedula(cedula);
     }  
 
     public Cliente obtenerCliente(Long cedula) {

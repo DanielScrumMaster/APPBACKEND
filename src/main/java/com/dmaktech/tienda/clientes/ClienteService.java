@@ -30,11 +30,16 @@ public class ClienteService {
         repository.save(nuevoCliente);
     }
 
-    public void actualizarCliente(Cliente cliente) {
-        repository.findById(cliente.getCedula())
-            .ifPresent(client -> {
-                repository.save(cliente);
-            });        
+    public void actualizarCliente(Cliente cliente, Long cedula) {
+        repository.findById(cedula)
+            .ifPresentOrElse(
+                datosClienteAntiguos -> {
+                    cliente.setCedula(cedula);
+                    repository.save(cliente);
+                },
+                () -> {
+                    throw new ClienteNoEncontradoException(cedula);
+                }); 
     }
 
     public void borrarCliente(Long cedula) {

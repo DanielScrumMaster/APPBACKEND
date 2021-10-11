@@ -30,16 +30,17 @@ public class UsuarioService {
         repository.save(nuevoUsuario);
     }
 
-    public void actualizarUsuario(Usuario usuario) {
-        repository.findById(usuario.getCedula())
-            .ifPresent(user -> {
-                user.setEmail(usuario.getEmail());
-                user.setNombres(usuario.getNombres());
-                user.setPassword(usuario.getPassword());
-                user.setUsuario(usuario.getUsuario());            
-            });
-
-        repository.save(usuario);
+    public void actualizarUsuario(Usuario usuario, Long cedula) {
+        repository
+            .findById(cedula)
+            .ifPresentOrElse(
+                (usuarioAntiguo) -> {
+                    usuario.setCedula(cedula);
+                    repository.save(usuario);
+                }, 
+                () -> {
+                    throw new UsuarioNoEncontradoException(cedula);
+                });
     }
 
     public void borrarUsuario(Long cedula){

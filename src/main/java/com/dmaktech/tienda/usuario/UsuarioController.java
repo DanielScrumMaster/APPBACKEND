@@ -35,8 +35,8 @@ public class UsuarioController {
     }
 
     @PutMapping("/{cedula}")
-    void actualizarUsuario(@RequestBody Usuario datosUsuario) {
-        usuarioService.actualizarUsuario(datosUsuario);
+    void actualizarUsuario(@RequestBody Usuario datosUsuario, @PathVariable Long cedula) {
+        usuarioService.actualizarUsuario(datosUsuario, cedula);
     }
 
     @DeleteMapping("/{cedula}")

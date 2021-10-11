@@ -45,8 +45,8 @@ public class ClienteController {
     }        
 
     @PutMapping("/{cedula}")
-    public void actualizarCliente(@RequestBody Cliente cliente) {
-        clienteService.actualizarCliente(cliente);
+    public void actualizarCliente(@RequestBody Cliente cliente, @PathVariable Long cedula) {
+        clienteService.actualizarCliente(cliente, cedula);
     }
 
     @DeleteMapping("/{cedula}")

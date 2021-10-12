@@ -17,8 +17,8 @@ public class ProveedorService {
         this.repository = repository;
     }
     
-    public Collection<Proveedor> obtenerProveedores(){
-        return repository.findAll();
+    public Collection<Proveedor> obtenerProveedores(String filtroNit){
+        return repository.findProveedoresByNit(filtroNit);
     }   
 
     public Proveedor obtenerProveedor(Long nit){

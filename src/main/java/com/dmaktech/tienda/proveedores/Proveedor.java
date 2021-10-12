@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Proveedor {
 
     @Id
-    @Column(name="nit_proveedores")
+    @Column(name="nit_proveedor")
     private Long nit;
     @Column(name="ciudad_proveedor")
     private String ciudad;

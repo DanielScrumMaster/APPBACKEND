@@ -30,10 +30,16 @@ public class ProveedorService {
         repository.save(nuevoProveedor);
     }
 
-    public void actualizarProveedor(Proveedor proveedor) {
-        repository
-            .findById(proveedor.getNit())
-            .ifPresent(p -> repository.save(proveedor));
+    public void actualizarProveedor(Proveedor proveedor, Long nit) {
+        repository.findById(nit)
+            .ifPresentOrElse(
+                datosProveedorAntiguos -> {
+                    proveedor.setNit(nit);
+                    repository.save(proveedor);
+                },
+                () -> {
+                    throw new ProveedorNoEncontradoException(nit);
+                }); 
     }
 
     public void borrarProveedor(Long nit) {

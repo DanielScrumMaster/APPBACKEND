@@ -45,7 +45,7 @@ public class ProveedorController {
 
     @PutMapping("/{nit}")
     public void actualizarProveedor(@PathVariable Long nit, @RequestBody Proveedor proveedor) {
-        proveedorService.actualizarProveedor(proveedor);
+        proveedorService.actualizarProveedor(proveedor, nit);
     }
 
     @DeleteMapping("/{nit}")

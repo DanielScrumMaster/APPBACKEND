@@ -8,11 +8,12 @@
 		<version>2.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.dmaktech</groupId>
-	<artifactId>tienda</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>tienda</name>
-	<description>Tienda genérica ciclo 3</description>
+	<packaging>war</packaging>
+	<groupId>co.edu.unbosque</groupId>
+	<artifactId>back-tienda</artifactId>
+	<version>1.0</version>
+	<name>back-tienda</name>
+	<description>back-tienda del ciclo 3 grupo 30 equipo 4</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -32,6 +33,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
@@ -43,19 +45,28 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>		 -->
 	</dependencies>
 
 	<build>
+		<finalName>back</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

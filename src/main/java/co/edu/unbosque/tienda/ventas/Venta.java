@@ -1,11 +1,18 @@
 package co.edu.unbosque.tienda.ventas;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import co.edu.unbosque.tienda.detalles_venta.DetalleVenta;
 
 @Entity
 @Table(name = "ventas")
@@ -24,8 +31,18 @@ public class Venta {
     private Double valorTotal;
     @Column(name = "iva")
     private Double iva;
+
+    @OneToMany(mappedBy = "venta")    
+    @JsonManagedReference
+    private List<DetalleVenta> detallesVenta;
     
-    public Venta() {}
+    public List<DetalleVenta> getDetallesVenta() {
+        return detallesVenta;
+    }
+
+    public void setDetallesVenta(List<DetalleVenta> detallesVenta) {
+        this.detallesVenta = detallesVenta;
+    }
 
     public Long getId() {
         return id;
@@ -73,5 +90,12 @@ public class Venta {
 
     public void setIva(Double iva) {
         this.iva = iva;
+    }
+
+    @Override
+    public String toString() {
+        return "Venta [cedulaCliente=" + cedulaCliente + ", cedulaUsuario=" + cedulaUsuario + ", detallesVenta="
+                + detallesVenta + ", id=" + id + ", iva=" + iva + ", valorInicial=" + valorInicial + ", valorTotal="
+                + valorTotal + "]";
     }  
 }

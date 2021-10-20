@@ -5,10 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import co.edu.unbosque.tienda.ventas.Venta;
+
 @Entity
-@Table(name = "detalle_venta")
+@Table(name = "detalles_ventas")
 public class DetalleVenta {
 
     @Id
@@ -16,9 +22,6 @@ public class DetalleVenta {
     @Column(name = "codigo_detalle")
     private Long codigoDetalle;
     
-    @Column(name = "codigo_venta")
-    private Long codigoVenta;
-
     @Column(name = "codigo_producto")
     private Long codigoProducto;
 
@@ -34,20 +37,17 @@ public class DetalleVenta {
     @Column(name = "val_iva")
     private Double valorIva;
 
+    @ManyToOne
+    @JoinColumn(name = "venta_id", referencedColumnName = "id", nullable = false)
+    @JsonBackReference
+    private Venta venta;
+
     public Long getCodigoDetalle() {
         return codigoDetalle;
     }
 
     public void setCodigoDetalle(Long codigoDetalle) {
         this.codigoDetalle = codigoDetalle;
-    }
-
-    public Long getCodigoVenta() {
-        return codigoVenta;
-    }
-
-    public void setCodigoVenta(Long codigoVenta) {
-        this.codigoVenta = codigoVenta;
     }
 
     public Long getCodigoProducto() {
@@ -90,5 +90,18 @@ public class DetalleVenta {
         this.valorIva = valorIva;
     }
 
-    
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalleVenta [cantidadProducto=" + cantidadProducto + ", codigoDetalle=" + codigoDetalle
+                + ", codigoProducto=" + codigoProducto + ", valorIva=" + valorIva + ", valorTotal=" + valorTotal
+                + ", valorUnitario=" + valorUnitario + "]";
+    }
 }

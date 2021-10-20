@@ -43,8 +43,6 @@ public class DetalleVentaController {
         return ResponseEntity.ok().build();
     }
 
-    
-
     @DeleteMapping("/{codigo}")
     public ResponseEntity<Object> borrarDetalleVenta(@PathVariable Long codigo) {
         detalleVentaService.borrarDetalleVenta(codigo);
